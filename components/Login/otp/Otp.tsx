@@ -10,7 +10,7 @@ const Otp = () => {
   const otpInput = useRef<any>(null);
   const [timer, setTimer] = useState(30);
   const [canResend, setCanResend] = useState(false);
-
+const[otp,setotp]=useState('');
   useEffect(() => {
     if (timer === 0) {
       setCanResend(true);
@@ -26,6 +26,7 @@ const Otp = () => {
 
   const handleChange = (code: string) => {
     console.log('OTP Code:', code);
+    setotp(code);
   };
 
   const handleResend = () => {
@@ -34,7 +35,9 @@ const Otp = () => {
     setCanResend(false);
     // You can also trigger your resend OTP API here
   };
-
+const handleverify=():void=>{
+    
+}
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
@@ -66,7 +69,7 @@ const Otp = () => {
       </View>
 
       <View style={styles.verifycontainer}>
-        <TouchableOpacity style={styles.verifybutton}>
+        <TouchableOpacity style={styles.verifybutton} onPress={handleverify}>
           <Text style={styles.verifytext}>Verify</Text>
         </TouchableOpacity>
       </View>
