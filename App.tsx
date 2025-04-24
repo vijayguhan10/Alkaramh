@@ -23,7 +23,7 @@ export default function App() {
 const Routers = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Cart"
+      initialRouteName="Login"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="Login" component={MobileLoginScreen} />
