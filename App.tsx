@@ -4,6 +4,9 @@ import { StyleSheet, Text, View } from "react-native";
 import MobileLoginScreen from "./components/Login/Login"; 
 import Otp from "./components/Login/otp/Otp";
 import Profile from "./components/Profile/Profile";
+import Products from "./components/Products/Products";
+import Footer from "./Utils/Footer/Footer";
+import Cart from "./components/Cart/Cart";
 import { NavigationContainer } from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 
@@ -19,10 +22,15 @@ export default function App() {
 }
 const Routers = () => {
   return (
-    <Stack.Navigator initialRouteName="Profile" screenOptions={{headerShown:false}}>
+    <Stack.Navigator
+      initialRouteName="Cart"
+      screenOptions={{ headerShown: false }}
+    >
       <Stack.Screen name="Login" component={MobileLoginScreen} />
-      <Stack.Screen name="otp" component={Otp}/>
-      <Stack.Screen name="Profile" component={Profile}/>
+      <Stack.Screen name="otp" component={Otp} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Products" component={Products} />
+      <Stack.Screen name="Cart" component={Cart} />
     </Stack.Navigator>
   );
 };

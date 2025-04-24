@@ -9,35 +9,38 @@ import Footer from '../../Utils/Footer/Footer';
 const Profile = () => {
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContent}>
-      <View style={styles.firsthalf}>
-        <View style={styles.firsthalfinner}>
-          <View style={styles.profilepic}></View>
-          <View style={styles.profiledetail}>
-            <Text style={styles.name}>Sivakumar S</Text>
-            <Text style={styles.email}>Not updated</Text>
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+        <View style={styles.firsthalf}>
+          <View style={styles.firsthalfinner}>
+            <View style={styles.profilepic}></View>
+            <View style={styles.profiledetail}>
+              <Text style={styles.name}>Sivakumar S</Text>
+              <Text style={styles.email}>Not updated</Text>
+            </View>
           </View>
         </View>
-      </View>
-     
-      <View style={styles.secondhalf}>
-        <Text style={styles.sectionTitle}>Account Settings</Text>
-        <ListItem icon="person-outline" label="Personal Information" />
-        <ListItem icon="notifications-outline" label="Notification Preferences" />
 
-        <Text style={styles.sectionTitle}>Orders</Text>
-        <ListItem icon="cube-outline" label="Your orders" />
-        <ListItem icon="heart-outline" label="Wishlist" />
-        <ListItem icon="map-outline" label="Address book" />
+        <View style={styles.secondhalf}>
+          <Text style={styles.sectionTitle}>Account Settings</Text>
+          <ListItem icon="person-outline" label="Personal Information" />
+          <ListItem
+            icon="notifications-outline"
+            label="Notification Preferences"
+          />
 
-        <Text style={styles.sectionTitle}>More</Text>
-        <ListItem icon="information-circle-outline" label="About" />
-        <ListItem icon="sync-outline" label="Check app updates" />
-        <ListItem icon="help-circle-outline" label="Help" />
-        <ListItem icon="settings-outline" label="Settings" />
-      </View>
+          <Text style={styles.sectionTitle}>Orders</Text>
+          <ListItem icon="cube-outline" label="Your orders" />
+          <ListItem icon="heart-outline" label="Wishlist" />
+          <ListItem icon="map-outline" label="Address book" />
+
+          <Text style={styles.sectionTitle}>More</Text>
+          <ListItem icon="information-circle-outline" label="About" />
+          <ListItem icon="sync-outline" label="Check app updates" />
+          <ListItem icon="help-circle-outline" label="Help" />
+          <ListItem icon="settings-outline" label="Settings" />
+        </View>
       </ScrollView>
-      <Footer/>
+      <Footer />
     </View>
   );
 };
@@ -56,7 +59,7 @@ const ListItem: React.FC<ListItemProps> = ({ icon, label }) => (
 );
 
 export default Profile;
-
+    
 const styles = StyleSheet.create({
   container: {
     flex: 1,
