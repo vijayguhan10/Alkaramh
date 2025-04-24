@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -7,14 +7,18 @@ import {
   TouchableOpacity,
   ScrollView,
   SafeAreaView,
-} from 'react-native';
+  Modal
+} from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import Footer from '../../Utils/Footer/Footer';
+import { useNavigation } from '@react-navigation/native';
 const Cart = () => {
+    const navigation:any = useNavigation();
+    const [deletemodal,setdeletemodal]=useState<boolean>(false)
     const products = [
         {
           id: 1,
@@ -62,17 +66,17 @@ const Cart = () => {
             'https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Rice_straw_bundles.jpg/800px-Rice_straw_bundles.jpg',
         },
       ];
-    
+    const handlecheckout=()=>{
+        navigation.navigate("Checkout")
+    }
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        {/* Header */}
         <View style={styles.header}>
           <Ionicons name="chevron-back" size={24} />
           <Text style={styles.headerTitle}>Your order</Text>
         </View>
 
-        {/* Address */}
         <TouchableOpacity style={styles.addressRow}>
           <Ionicons name="location-sharp" size={18} color="#3B82F6" />
           <Text style={styles.addressText}>Abu Nakhlah, Qatar...</Text>
@@ -104,6 +108,7 @@ const Cart = () => {
                       size={22}
                       color="red"
                       style={styles.trashIcon}
+                      onPress={()=>setdeletemodal(true)}
                     />
                   </View>
                 </View>
@@ -111,11 +116,47 @@ const Cart = () => {
             ))}
           </ScrollView>
         </View>
-        <TouchableOpacity style={styles.checkoutBtn}>
+        <TouchableOpacity style={styles.checkoutBtn} onPress={handlecheckout}>
           <Text style={styles.checkoutText}>Check out</Text>
         </TouchableOpacity>
       </View>
       <Footer />
+      <Modal
+  animationType="fade"
+  transparent={true}
+  visible={deletemodal}
+  onRequestClose={() => setdeletemodal(false)}
+>
+  <View style={styles.modalOverlay}>
+    <View style={styles.modalContainer}>
+      <View style={styles.trashIconContainer}>
+        {/* <Image  /> */}
+        <Ionicons name="trash" size={20}/>
+      </View>
+      <Text style={styles.modalTitle}>Are you sure to delete</Text>
+      <View style={styles.modalButtons}>
+        <TouchableOpacity
+          style={styles.cancelBtn}
+          onPress={() => setdeletemodal(false)}
+        >
+          <Text style={styles.cancelText}>No, keep it</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.confirmBtn}
+          onPress={() => {
+            // Add delete logic
+            setdeletemodal(false);
+          }}
+        >
+          <Text style={styles.confirmText}>Yes, delete</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  </View>
+</Modal>
+
+
+      
     </SafeAreaView>
   );
 };
@@ -136,8 +177,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: hp("1.5%"),
-    marginTop:hp('4%')
-
+    marginTop: hp("4%"),
   },
   headerTitle: {
     fontSize: wp("5%"),
@@ -203,6 +243,9 @@ const styles = StyleSheet.create({
   },
   trashIcon: {
     marginLeft: wp("4%"),
+    width: 30,
+    height: 30,
+    tintColor: "#f87171",
   },
   checkoutBtn: {
     backgroundColor: "#1D4ED8",
@@ -220,7 +263,63 @@ const styles = StyleSheet.create({
     fontSize: wp("4.2%"),
     fontWeight: "bold",
   },
-  datacontainer:{
-    height:hp('65%')
-  }
+  datacontainer: {
+    height: hp("65%"),
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  modalContainer: {
+    backgroundColor: "white",
+    borderRadius: 20,
+    width: wp("80%"),
+    paddingTop: 50,
+    paddingBottom: 25,
+    paddingHorizontal: 20,
+    alignItems: "center",
+    position: "relative",
+  },
+  trashIconContainer: {
+    position: "absolute",
+    top: -20,
+    backgroundColor: "white",
+    borderRadius: 40,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#f87171",
+  },
+
+  modalTitle: {
+    fontSize: wp("4.5%"),
+    fontWeight: "600",
+    textAlign: "center",
+    marginBottom: 25,
+  },
+  modalButtons: {
+    width: "100%",
+  },
+  cancelBtn: {
+    backgroundColor: "#f87171",
+    paddingVertical: 12,
+    borderRadius: 10,
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  cancelText: {
+    color: "white",
+    fontWeight: "600",
+  },
+  confirmBtn: {
+    backgroundColor: "#f3f4f6",
+    paddingVertical: 12,
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  confirmText: {
+    color: "#374151",
+    fontWeight: "600",
+  },
 });

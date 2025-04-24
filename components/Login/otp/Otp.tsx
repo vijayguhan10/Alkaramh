@@ -5,8 +5,9 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import OTPTextInput from 'react-native-otp-textinput';
-
+import { useNavigation } from '@react-navigation/native';
 const Otp = () => {
+    const navigation:any=useNavigation();
   const otpInput = useRef<any>(null);
   const [timer, setTimer] = useState(30);
   const [canResend, setCanResend] = useState(false);
@@ -36,7 +37,8 @@ const[otp,setotp]=useState('');
     // You can also trigger your resend OTP API here
   };
 const handleverify=():void=>{
-    
+    navigation.navigate("Profile")
+
 }
   return (
     <View style={styles.container}>
