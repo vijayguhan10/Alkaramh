@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Alkarmh",
-    "slug": "Alkarmh",
+    "slug": "alkaramh",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -26,8 +26,14 @@
     },
     "extra": {
       "eas": {
-        "projectId": "228f3dd2-0d97-434a-b8df-97fc33ddc4"
+        "projectId": "228f3dd2-0d97-434a-b8df-97fc33ddc4bc"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/228f3dd2-0d97-434a-b8df-97fc33ddc4bc"
     }
   }
 }
