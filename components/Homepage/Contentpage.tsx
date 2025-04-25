@@ -5,22 +5,61 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
+  Image,
 } from "react-native";
-import { widthPercentageToDP as wp ,heightPercentageToDP as hp } from "react-native-responsive-screen";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 const CombinedProductPage = () => {
+    const navigation:any=useNavigation();
+  const handlecontinue = (): void => {
+    navigation.navigate("ProductIndetail");
+}
+const handelseall = (): void => {
+  navigation.navigate("Products");
+}
   const categories = ["All", "Feed", "Protein", "Salts"];
   const filters = ["Previously Ordered", "Rating 4.0+"];
   const products = [
-    { name: "Wheat Straw", rating: "4.7★", price: "QAR 12" },
-    { name: "Wheat Straw", rating: "4.7★", price: "QAR 12" },
-    { name: "Wheat Straw", rating: "4", price: "QAR 12" },
+    {
+      name: "Wheat Straw",
+      rating: "4.7★",
+      price: "QAR 12",
+      image:
+        "https://vatsanfoods.com/adminln/uploads/product-images/1655987267_Jowar_-_Red_2.jpg",
+    },
+    {
+      name: "Wheat Straw",
+      rating: "4.7★",
+      price: "QAR 12",
+      image:
+        "https://vatsanfoods.com/adminln/uploads/product-images/1655987267_Jowar_-_Red_2.jpg",
+    },
+    {
+      name: "Wheat Straw",
+      rating: "4",
+      price: "QAR 12",
+      image:
+        "https://vatsanfoods.com/adminln/uploads/product-images/1655987267_Jowar_-_Red_2.jpg",
+    },
   ];
 
   return (
     <ScrollView style={styles.container}>
       {/* Filter Section */}
       <View style={styles.filterContainer}>
-        <Text style={styles.filterTitle}>Filters ▼</Text>
+        <Text style={styles.filterTitle}>
+          Filters{" "}
+          <Ionicons
+            name="funnel-outline"
+            size={15}
+            // style={{ marginTop: hp("24%"),position:"absolute" }}
+            color={"#000000"}
+          />
+        </Text>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -35,7 +74,9 @@ const CombinedProductPage = () => {
       </View>
       <View style={styles.starter}>
         <Text style={{ fontWeight: "700" }}>Recomended Products</Text>
-        <Text style={{ color: "blue" }}>See All</Text>
+        <TouchableOpacity onPress={(handelseall)}>
+          <Text style={{ color: "blue" }}>See All</Text>
+        </TouchableOpacity>
       </View>{" "}
       <ScrollView
         horizontal
@@ -43,22 +84,27 @@ const CombinedProductPage = () => {
         style={styles.productsContainer}
       >
         {products.map((product, index) => (
-          <View key={index} style={styles.productCard}>
+          <TouchableOpacity onPress={handlecontinue}  key={index} style={styles.productCard}>
             <View style={styles.ratingContainer}>
               <Text style={styles.ratingText}>{product.rating}</Text>
             </View>
             <View style={styles.productImage}>
-              <Text style={styles.imagePlaceholder}>Image</Text>
+              <Image
+                source={{
+                  uri: product.image || "https://via.placeholder.com/120",
+                }}
+                style={styles.image}
+                resizeMode="cover"
+              />
             </View>
             <Text style={styles.productName}>{product.name}</Text>
             <Text style={styles.productPrice}>{product.price}</Text>
-          </View>
+          </TouchableOpacity>
         ))}
         <TouchableOpacity style={styles.seeAllButton}>
           <Text style={styles.seeAllText}>See all</Text>
         </TouchableOpacity>
       </ScrollView>
-     
     </ScrollView>
   );
 };
@@ -74,7 +120,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   filterTitle: {
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: "bold",
     marginRight: 10,
     color: "#333",
@@ -106,11 +152,11 @@ const styles = StyleSheet.create({
     width: 120,
     marginRight: 15,
   },
-   starter: {
-      marginTop: hp("1.5%"),
-      flexDirection: "row",
-      justifyContent: "space-between",
-    },
+  starter: {
+    marginTop: hp("1.5%"),
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
   ratingContainer: {
     position: "relative",
     top: 120,
@@ -156,6 +202,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#007bff",
   },
+  image: {
+    width: "70%",
+    height: "70%",
+    borderRadius: 10,
+  },                                       
   spotlightTitle: {
     fontSize: 16,
     fontWeight: "bold",

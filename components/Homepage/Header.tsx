@@ -12,15 +12,23 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-
+import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 type Product = {
   name: string;
   imageurl: string;
 };
 
 const Header = () => {
+  const navigation: any = useNavigation();
   const [products, setProducts] = useState<Product[]>([]);
   const categories = ["All", "Feed", "Protein", "Salts"];
+  const handlecontinue = (): void => {
+    navigation.navigate("ProductIndetail");
+  };
+  const handelseall = (): void => {
+    navigation.navigate("Products");
+  };
 
   useEffect(() => {
     setProducts([
@@ -59,14 +67,31 @@ const Header = () => {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Search deals, products & more..."
-        placeholderTextColor="#888"
+      <Ionicons
+        name="search"
+        color={"#000000"}
+        size={20}
+        style={{ position: "relative", top: hp("4.3%"), left: wp("2%") }}
       />
+      <View style={styles.headertop}>
+        <View style={styles.inputfield}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="     Search deals, products & more..."
+            placeholderTextColor="#888"
+          />
+        </View>
+        <Ionicons
+          name="notifications"
+          size={20}
+          style={{ marginTop: hp("1.9%"), marginLeft: wp("5%") }}
+        />
+      </View>
       <View style={styles.starter}>
         <Text style={{ fontWeight: "700" }}>Explore Categories</Text>
-        <Text style={{ color: "blue" }}>See All</Text>
+          <TouchableOpacity onPress={handelseall}>
+            <Text style={{ color: "blue" }}>See All</Text>
+          </TouchableOpacity>
       </View>
 
       <ScrollView
@@ -96,12 +121,19 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#eee",
   },
+  headertop: {
+    flexDirection: "row",
+    // paddingTop:hp("5%")
+  },
+  inputfield: {
+    width: wp("80%"),
+  },
   searchInput: {
     height: hp("6%"),
     borderRadius: hp("1%"),
     borderColor: "black",
     borderWidth: 0.2,
-    paddingHorizontal: wp("4%"),
+    paddingHorizontal: wp("5%"),
     fontSize: hp("2%"),
   },
   starter: {

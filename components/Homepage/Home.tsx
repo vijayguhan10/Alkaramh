@@ -3,15 +3,17 @@ import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import Header from './Header';
 import ContentPage from './Contentpage';
 import DownProductPage from './Downproduct';
-
+import Footer from '../../Utils/Footer/Footer';
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
+      {/* ScrollView should wrap everything */}
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <Header />
         <ContentPage />
         <DownProductPage />
       </ScrollView>
+      <Footer/>
     </SafeAreaView>
   );
 };

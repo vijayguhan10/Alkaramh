@@ -48,6 +48,7 @@ const MobileLoginScreen = () => {
           style={styles.continueButton}
           labelStyle={styles.continueText}
           onPress={handlecontinue}
+          // onPressIn={navigation("Home")}
         >
           Continue
         </Button>
