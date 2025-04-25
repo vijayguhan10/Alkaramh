@@ -28,7 +28,6 @@ const MobileLoginScreen = () => {
         <Text style={styles.title}>
           Let’s start with your{"\n"}mobile number
         </Text>
-
         <View style={styles.inputRow}>
           <View style={styles.codeBox}>
             <Text style={styles.codeText}>+974</Text>
@@ -81,8 +80,8 @@ const MobileLoginScreen = () => {
 export default MobileLoginScreen;
 const styles = StyleSheet.create({
     safeContainer: {
+      marginTop:hp("10%"),
       flex: 1,
-      backgroundColor: "#fff",
     },
     scrollContainer: {
       paddingHorizontal: wp("5%"),
@@ -166,8 +165,7 @@ const styles = StyleSheet.create({
     footer: {
       fontSize: wp("3%"),
       color: "#777",
-      textAlign: "center",
-      marginTop: hp("6%"),
+      marginTop: hp("7%"),
       lineHeight: hp("2.8%"),
     },
   });

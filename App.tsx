@@ -5,7 +5,7 @@ import MobileLoginScreen from "./components/Login/Login";
 import Otp from "./components/Login/otp/Otp";
 import { NavigationContainer } from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
-
+import Home from "./components/Homepage/Home";
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -19,7 +19,7 @@ export default function App() {
 const Routers = () => {
   return (
     <Stack.Navigator initialRouteName="Login" screenOptions={{headerShown:false}}>
-      <Stack.Screen name="Login" component={MobileLoginScreen} />
+      <Stack.Screen name="Login" component={Home} />
       <Stack.Screen name="otp" component={Otp}/>
     </Stack.Navigator>
   );
