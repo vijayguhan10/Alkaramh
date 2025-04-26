@@ -8,6 +8,7 @@ import Products from "./components/Products/Products";
 import Footer from "./Utils/Footer/Footer";
 import Cart from "./components/Cart/Cart";
 import Checkoutpage from "./components/checkout/Checkoutpage";
+import ProfileDetails from "./components/Profile/Details.tsx/Details";
 import { NavigationContainer } from "@react-navigation/native";
 import {createStackNavigator} from "@react-navigation/stack";
 
@@ -33,6 +34,8 @@ const Routers = () => {
       <Stack.Screen name="Products" component={Products} />
       <Stack.Screen name="Cart" component={Cart} />
       <Stack.Screen name="Checkout" component={Checkoutpage}/>
+      <Stack.Screen name="Profiledetails" component={ProfileDetails}/>
+      
     </Stack.Navigator>
   );
 };

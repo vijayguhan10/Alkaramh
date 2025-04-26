@@ -6,7 +6,9 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Footer from '../../Utils/Footer/Footer';
+import { useNavigation } from '@react-navigation/native';
 const Profile = () => {
+  const navigation:any=useNavigation();
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
@@ -21,24 +23,59 @@ const Profile = () => {
         </View>
 
         <View style={styles.secondhalf}>
-          <Text style={styles.sectionTitle}>Account Settings</Text>
-          <ListItem icon="person-outline" label="Personal Information" />
-          <ListItem
-            icon="notifications-outline"
-            label="Notification Preferences"
-          />
+  <Text style={styles.sectionTitle}>Account Settings</Text>
 
-          <Text style={styles.sectionTitle}>Orders</Text>
-          <ListItem icon="cube-outline" label="Your orders" />
-          <ListItem icon="heart-outline" label="Wishlist" />
-          <ListItem icon="map-outline" label="Address book" />
+  <ListItem
+    icon="person-outline"
+    label="Personal Information"
+    onPress={() => navigation.navigate('Profiledetails')}
+  />
+  <ListItem
+    icon="notifications-outline"
+    label="Notification Preferences"
+    onPress={() => navigation.navigate('NotificationPreferences')}
+  />
 
-          <Text style={styles.sectionTitle}>More</Text>
-          <ListItem icon="information-circle-outline" label="About" />
-          <ListItem icon="sync-outline" label="Check app updates" />
-          <ListItem icon="help-circle-outline" label="Help" />
-          <ListItem icon="settings-outline" label="Settings" />
-        </View>
+  <Text style={styles.sectionTitle}>Orders</Text>
+  <ListItem
+    icon="cube-outline"
+    label="Your orders"
+    onPress={() => navigation.navigate('Orders')}
+  />
+  <ListItem
+    icon="heart-outline"
+    label="Wishlist"
+    onPress={() => navigation.navigate('Wishlist')}
+  />
+  <ListItem
+    icon="map-outline"
+    label="Address book"
+    onPress={() => navigation.navigate('AddressBook')}
+  />
+
+  <Text style={styles.sectionTitle}>More</Text>
+  <ListItem
+    icon="information-circle-outline"
+    label="About"
+    onPress={() => navigation.navigate('About')}
+  />
+  <ListItem
+    icon="sync-outline"
+    label="Check app updates"
+    onPress={() => navigation.navigate('CheckUpdates')}
+  />
+  <ListItem
+    icon="help-circle-outline"
+    label="Help"
+    onPress={() => navigation.navigate('Help')}
+  />
+  <ListItem
+    icon="settings-outline"
+    label="Settings"
+    onPress={() => navigation.navigate('Settings')}
+  />
+</View>
+
       </ScrollView>
       <Footer />
     </View>
@@ -48,10 +85,11 @@ const Profile = () => {
 interface ListItemProps {
   icon: string;
   label: string;
+  onPress?:()=>void;
 }
 
-const ListItem: React.FC<ListItemProps> = ({ icon, label }) => (
-  <TouchableOpacity style={styles.item}>
+const ListItem: React.FC<ListItemProps> = ({ icon, label,onPress }) => (
+  <TouchableOpacity style={styles.item} onPress={onPress}>
     <Icon name={icon} type="ionicon" size={22} color="#283593" />
     <Text style={styles.itemText}>{label}</Text>
     <Icon name="chevron-forward-outline" type="ionicon" size={22} color="#999" />
